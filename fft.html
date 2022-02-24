@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en" class="no-js">
+   <head>
+      <meta charset="utf-8">
+      <!-- begin SEO -->
+      <title>Fast Fourrier Transform</title>
+      <meta name="description" content="">
+      <meta property="og:locale" content="en">
+      <meta property="og:site_name" content="Home">
+      <meta property="og:title" content="Fast Fourrier Transform">
+      <link rel="canonical" href=alankelly.dev/fft">
+      <meta property="og:url" content="alankelly.dev/fftt">
+      <meta property="og:description" content="">
+      <meta property="og:image" content="assets/images/first_photo.jpg">
+      <meta property="og:type" content="article">
+      <meta property="article:published_time" content="2019-04-23T00:00:00+00:00">
+      <script type="application/ld+json">
+         {
+           "@context" : "http://schema.org",
+           "@type" : "Person",
+           "name" : "Alan Kelly",
+           "url" : "//alankelly.dev"
+         }
+      </script>
+      <!-- end SEO -->
+      <!-- http://t.co/dKP3o1e -->
+      <meta name="HandheldFriendly" content="True">
+      <meta name="MobileOptimized" content="320">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script>
+         document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+      </script>
+      <!-- For all browsers -->
+      <link rel="stylesheet" href="assets/css/main.css">
+      <meta http-equiv="cleartype" content="on">
+      <!-- start custom head snippets -->
+      <!-- insert favicons. use http://realfavicongenerator.net/ -->
+      <!-- end custom head snippets -->
+      <!-- Begin Jekyll SEO tag v2.5.0 -->
+      <title>Fast Fourrier Transform</title>
+      <meta name="generator" content="Jekyll v3.8.5" />
+      <meta property="og:title" content="Fast Fourrier Transform" />
+      <meta name="author" content="Alan Kelly" />
+      <meta property="og:locale" content="en_US" />
+      <meta name="description" content="Personal Website and Blog." />
+      <meta property="og:description" content="Personal Website and Blog." />
+      <link rel="canonical" href=//alankelly.dev/fft" />
+      <meta property="og:url" content="//alankelly.dev/fft" />
+      <meta property="og:site_name" content="Home" />
+      <meta property="og:type" content="article" />
+      <meta property="article:published_time" content="2019-04-23T00:00:00+00:00" />
+      <meta name="twitter:card" content="summary" />
+      <script type="application/ld+json">
+         {"author":{"@type":"Person","name":"Alan Kelly"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"fft"},"url":"fft","headline":"Fast Fourrier Transform","dateModified":"2019-04-23T00:00:00+00:00","datePublished":"2019-04-23T00:00:00+00:00","description":"Personal Website and Blog.","@context":"http://schema.org"}
+      </script>
+      <!-- End Jekyll SEO tag -->
+<link rel="icon" href="assets/images/icon.png">
+<style>
+body {
+margin-bottom: 100px;
+}
+</style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script> 
+   </head>
+   <body class="layout--single">
+      <!--[if lt IE 9]>
+      <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+      <![endif]-->
+      <div class="masthead">
+         <div class="masthead__inner-wrap">
+            <div class="masthead__menu">
+               <nav id="site-nav" class="greedy-nav">
+                  <ul class="visible-links">
+                     <li class="masthead__menu-item masthead__menu-item--lg"><a href="//alankelly.dev/">Home</a></li>
+            <li class="masthead__menu-item"><a href="//alankelly.dev/blog">Blog</a></li>
+            <li class="masthead__menu-item"><a href="//alankelly.dev/talks">Talks</a></li>
+            <li class="masthead__menu-item"><a href="//alankelly.dev/cv/AlanKelly.pdf">CV</a></li>
+                  </ul>
+                  <ul class="hidden-links hidden"></ul>
+               </nav>
+            </div>
+         </div>
+      </div>
+      <div class="page__hero--overlay"
+         style="background-color: #000; background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/first_photo.jpg');"
+         >
+         <div class="wrapper">
+            <h1 class="page__title" itemprop="headline">
+               Having your Cake and Eating it - Fast, Cross-platform FFTs
+            </h1>
+            <p class="page__lead"><br /><br /><br /></p>
+         </div>
+      </div>
+      <div id="main" role="main">
+         <div class="sidebar sticky">
+            <div itemscope itemtype="http://schema.org/Person">
+               <div class="author__avatar">
+                  <img src="assets/images/me.png" class="author__avatar" alt="Alan Kelly" itemprop="image">
+               </div>
+               <div class="author__content">
+                  <h3 class="author__name" itemprop="name">Alan Kelly</h3>
+                  <p class="author__bio" itemprop="description">
+                     Software Performance Expert
+                  </p>
+               </div>
+               <div class="author__urls-wrapper">
+                  <button class="btn btn--inverse">Follow</button>
+                  <ul class="author__urls social-icons">
+                     <li>
+                       <script>
+                       var emailAddress = ('me@' + 'alankelly.dev');
+                       document.write('<a href="mailto:' + emailAddress + '">'
+                       + '<i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i>'
+                       + " Email"
+                       + '</a>');
+                       </script>
+                     <li><a href="https://www.linkedin.com/in/alanjkelly" itemprop="sameAs"  target="_blank">
+                        <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> 
+                        LinkedIn
+                        </a>
+                     </li>
+                     <li><a href="https://github.com/alankelly" itemprop="sameAs"  target="_blank">
+                        <i class="fa fa-fw fa-github" aria-hidden="true"></i> 
+                        Github
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+            <meta itemprop="headline" content="Fast Fourrier Transfrom">
+            <meta itemprop="description" content="">
+            <meta itemprop="datePublished" content="April 23, 2019">
+            <div class="page__inner-wrap">
+               <!--<section class="page__content" itemprop="text">-->
+               <p>Anyone who's ever worked with SIMD (Single Instruction Multiple Data) instructions has encountered the problem of having to write a new code for each target architecture. So if you're working on Intel, Arm and PowerPC, you need to write three different codes. This quickly becomes a pain, especially when you consider each generation of target architecture. That's why, when I was at Numscale, I worked on a cross platform SIMD <a href="https://developer.numscale.com/nsimd.html"  target="_blank"> library</a>. This means that you can write one code and it runs everywhere!</p>
+
+<p>But, is it fast? If you're writing SIMD code, clearly performance is important to you. We all have experience of cross-platform code being significantly slower than code optimized for a particular processor. So, can you have your cake and eat it too? A generic code that's fast? </p>
+
+<p> The answer is yes - and what better way to prove this than to take on one of the best known HPC libraries - the FFTW or the Fastest Fourrier Transform in the West as well as Intel's MKL. The FTTW has existed for more than 20 years and has been optimized for each target architecture. So it can't be easy to beat it, especially without writing platform specific code.</p>
+
+<h1>Fast Portable FFTs</h1>
+<p>To prove that it's possible to have fast, portable code, I wrote 1D and 2D FFTs using Numscale's SIMD library. I tested them on the following processors:</p>
+<li> Intel Scalable Processor Silver 4110 @3GHz</li>
+<li> AMD Epyc 7281 @2.7GHz</li>
+<li> Cavium ThunderX CN8890 @2GHz (Arm)</li>
+<h2>Results</h2>
+The results are displayed on the graphs below. The benchmark methodology is explained <a href="#methodology">here</a>. 
+<h3>Single Threaded 2D FFT Performance</h3>
+<canvas id="canvasAMDEpyc2d" width="50%" height="25%"></canvas>
+<canvas id="canvascavium2d" width="50%" height="25%"></canvas>
+<canvas id="canvasintelskylake2d" width="50%" height="25%"></canvas>
+
+<h3>1D FFT Performance</h3>
+<canvas id="canvascavium1d" width="50%" height="25%"></canvas>
+<canvas id="canvasAMDEpyc1d" width="50%" height="25%"></canvas>
+<canvas id="canvasintelskylake1d" width="50%" height="25%"></canvas>
+
+<h3>Multi-Threaded Large 2D FFT Performance</h3>
+<canvas id="canvascavium65536" width="50%" height="25%"></canvas>
+<canvas id="canvasAMDEypc65536" width="50%" height="25%"></canvas>
+<canvas id="canvasintelskylake65536" width="50%" height="25%"></canvas>
+
+<h3>Multi-Threaded Smaller 2D FFT Performance</h3>
+<canvas id="canvascavium16384" width="50%" height="25%"></canvas>
+<canvas id="canvasAMDEypc16384" width="50%" height="25%"></canvas>
+<canvas id="canvasintelskylake16384" width="50%" height="25%"></canvas>
+
+<h1>Conclusions</h1>
+Yes, it's possible to write fast, cross-platform code. In only two months I wrote 1D and 2D FFTs which in many cases are significantly faster the the state of the art.
+
+<h1><a id="methodology"></a>Methodology</h1>
+<font size="4">
+All benchmarks on non-Intel machines were performed against the FFTW library version 3.3.7. The FFTW was configured as follows on Arm:
+
+<p>
+<div style="border: 1px dashed black;text-align: center;">
+./configure --enable-shared --enable-armv8-cntvct-el0 --enable-neon --enable-threads --enable-single
+</div>
+</p>
+
+<p>And as follows on AMD:</p>
+
+<p>
+<div style="border: 1px dashed black;text-align: center;">
+./configure --enable-shared --enable-avx2 --enable-threads --enable-single
+</div>
+</p>
+
+<p>The FFTW was compiled using gcc-6.3. The FFTW is an autotuning library meaning that it
+automatically runs tests to determine the optimal algorithms to use to calculate the various transforms.
+The parameter FFTW_PATIENT was used for all 1D transforms and FFTW_MEASURE for all 2d transforms.
+These parameters tell the FFTW to find an optimized plan by actually computing many FFTs and
+measuring their execution time. For large transforms this can take several hours to measure. 
+All benchmarks on Intel machines were performed against Intel MKL version 2018.
+The numerical precision of the FFTW, MKL and Arch-R are
+equivalent.</p>
+
+<p>All benchmark results are given in GFlops. This was calculated using the following equation:</p>
+
+<p>$$GFlops = {5Nlog_2N \over t}$$</p>
+
+<p>Where <i>t</i> is the time in nanoseconds.
+This is the method used on the FFTW benchmark <a href="http://www.fftw.org/speed/method.html"  target="_blank"> page</a>.
+This is not an actual flop count; it is simply a convenient scaling, based on the fact that the radix-2 Cooley-Tukey algorithm asymptotically requires 5 N log2(N) floating-point operations.
+</font></p>
+
+               <footer class="page__meta">
+                  <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-04-23T00:00:00+00:00">April 23, 2019</time></p>
+               </footer>
+               <section class="page__share">
+                  <h4 class="page__share-title">Share on</h4>
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&url=//alankelly.dev/fft"  target="_blank" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+               </section>
+            </div>
+         </article>
+      </div>
+      <div class="page__footer">
+         <footer>
+            <!-- start custom footer snippets -->
+            <!-- end custom footer snippets -->
+            <div class="page__footer-copyright">
+               &copy; 2019 Alan Kelly.
+               &nbsp;&nbsp;&nbsp;&nbsp;
+                       <script>
+                       var emailAddress = ('me@' + 'alankelly.dev');
+                       document.write('<a href="mailto:' + emailAddress + '">'
+                       + '<i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i>'
+                       + " Email"
+                       + '</a>');
+                       </script>
+               <a href="https://www.linkedin.com/in/alanjkelly" itemprop="sameAs"  target="_blank"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i>LinkedIn</a>
+               <a href="https://github.com/alankelly" itemprop="sameAs"  target="_blank"><i class="fa fa-fw fa-github" aria-hidden="true"></i>Github</a>
+            </div>
+         </footer>
+      </div>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var chartColors = {
+      red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+          yellow: 'rgb(255, 205, 86)',
+            green: 'rgb(75, 192, 192)',
+              blue: 'rgb(54, 162, 235)',
+                purple: 'rgb(153, 102, 255)',
+                  grey: 'rgb(201, 203, 207)'
+                };
+var AMDEpyc2d = document.getElementById('canvasAMDEpyc2d').getContext('2d');
+var configAMDEpyc2d = { type: 'line', data: { labels: ["256", "512", "1024", "2048", "4096", "8192", "16384", "32768", "65536"], datasets: [{ label: 'Arch-R', backgroundColor: window.chartColors.yellow, borderColor: window.chartColors.yellow, data: [20.1,15.4,10.9, 12.9, 13.5, 10.8, 11.7, 10.0, 11.4], fill: false, }, { label: 'FFTW', fill: false, backgroundColor: window.chartColors.green, borderColor: window.chartColors.green, data: [15.9,11.7,6.4, 6.1, 5.7, 6.2, 6.7, 5.6, 5.3], }] }, options: { responsive: true, maintainAspectRatio: true, title: { display: true, text: '2D Single thread: Arch-R vs FFTW Single Precision Complex, AMD Epyc 7281 @2.7GHz' }, tooltips: { mode: 'index', intersect: false, }, hover: { mode: 'nearest', intersect: true }, scales: { xAxes: [{ display: true, scaleLabel: { display: true, labelString: 'Transform size (square)' }, gridLines: { display: false } }], yAxes: [{ display: true, scaleLabel: { display: true, labelString: 'GFLOPs' }, gridLines: { display: false } }] } } };
+window.AMDEpyc2d = new Chart(AMDEpyc2d, configAMDEpyc2d);
+
+var cavium2d = document.getElementById('canvascavium2d').getContext('2d');
+var configcavium2d = {  type: 'line',  data: {labels: ["256", "512", "2048","4096","8192","16384","32768","65536"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data: [15.2, 14.6, 13.0, 12.0, 10.9, 8.1, 7.8, 7.7, 7.4],fill: false,    }, {      label: 'FFTW',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data: [14.4, 14.1, 13.3, 12.5, 7.7, 3.7, 4.1, 3.4, 2.3],}]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: '2D Single thread: Arch-R FFT vs FFTW Single Precision Complex, Cavium ThunderX CN8890 @2GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Transform size (square)'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+window.cavium2d = new Chart(cavium2d, configcavium2d);
+
+var intelskylake2d = document.getElementById('canvasintelskylake2d').getContext('2d');
+var configintelskylake2d = {  type: 'line',  data: {labels: ["256", "512", "2048","4096","8192","16384","32768","65536"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data:  [18.0, 13.9, 15.7, 17.5, 16.3, 14.2, 14.2, 14.2, 15.3],fill: false,    }, {      label: 'MKL',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data: [21.1, 16.3, 17.3, 8.1, 6.3, 6.4, 5.9, 6.3, 6.3],}]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: '2D Single thread: Arch-R FFT vs MKL Single Precision Complex, Intel Scalable Processor Silver 4110 @3GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Transform size (square)'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+window.intelskylake2d = new Chart(intelskylake2d, configintelskylake2d);
+
+
+var configcavium1d = {  type: 'line',  data: {labels: ["256","512","1024","2048","4096","8192","16384","32768","65536", "131072", "262144"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data: [11.6, 12.8, 12.7, 14.4, 13.6, 14.2, 13.6, 13.8, 13.0, 13.0, 12.7],fill: false,    }, {      label: 'FFTW',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data: [9.3, 10.1, 11.0, 11.7, 12.2, 12.3, 12.2, 11.6, 11.2, 11.0, 10.5],}]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: '1D Single thread: Arch-R FFT vs FFTW Single Precision Complex, Cavium ThunderX CN8890 @2GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Transform size (square)'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+
+var configintelskylake1d = {  type: 'line',  data: {labels: ["256", "512","1024","2048","4096","8192","16384","32768","65536", "131072", "262144"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data: [17.7, 18.9, 19.6, 19.2, 17.3, 15.3, 14.7, 14.9, 13.4, 12.1, 12.4],fill: false,    }, {      label: 'MKL',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data: [20.0, 23.4, 24.6, 21.3, 19.9, 18.7, 17.5, 12.9, 12.8, 10.6, 10.5],}]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: '1D Single thread: Arch-R FFT vs MKL Single Precision Complex, Intel Scalable Processor Silver 4110 @3GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Transform size (square)'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+var configAMDEpyc1d = {  type: 'line',  data: {labels: ["256", "512","1024","2048","4096","8192","16384","32768","65536", "131072"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data: [18.3, 20.2, 20.7, 21.4, 21.4, 9.6, 10.3, 10.2, 7.7, 6.4],fill: false,    }, {      label: 'FFTW',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data: [25.0, 27.1, 27.7, 27.7, 26.6, 10.3, 8.8, 8.4, 10.4, 9.8],}]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: '1D Single thread: Arch-R FFT vs FFTW Single Precision Complex, AMD Epyc 7281 @2.7GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Transform size (square)'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+var AMDEpyc1d = document.getElementById('canvasAMDEpyc1d').getContext('2d');
+window.AMDEpyc1d = new Chart(AMDEpyc1d, configAMDEpyc1d);
+var cavium1d = document.getElementById('canvascavium1d').getContext('2d');
+window.cavium1d = new Chart(cavium1d, configcavium1d);
+var intelskylake1d = document.getElementById('canvasintelskylake1d').getContext('2d');
+window.intelskylake1d = new Chart(intelskylake1d, configintelskylake1d);
+var configcavium65536 = {  type: 'line',  data: {labels: ["1","2","4","8","16","32","48","64","96"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data: [1.6, 2.2, 4.2, 8.0, 15.0, 26.0, 32.0, 37.2, 37.2],fill: false,    }, {      label: 'FFTW',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data: [1.1, 1.4, 2.8, 4.0, 3.1, 5.6, 7.6, 9.3, 11.3],}]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: 'FFT (65536x65536) Performance: Arch-R FFT vs FFTW Single Precision Complex, Cavium ThunderX CN8890 @2GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Number of cores'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+
+var configAMDEypc65536 = {  type: 'line',  data: {labels: ["1","2","4","8","16","32"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data: [11, 20, 34, 42, 59, 61], fill: false,    }, {      label: 'FFTW',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data: [5, 7, 8, 10, 9, 14], }]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: 'FFT (65536x65536) Performance using Arch-R FFT vs FFTW Single Precision Complex on an AMD Epyc 7281 @2.7GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Number of cores'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+
+var configintelskylake65536 = {  type: 'line',  data: {labels: ["1","2","4","8","16"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data: [20,28,34,36,38], fill: false,    }, {      label: 'Intel MKL',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data: [8,12,20,28,42], }]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: 'FFT (65536x65536) Performance using Arch-R FFT vs Intel MKL Single Precision Complex on an Intel Xeon Scalable Processors Silver 4110 @3GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Number of cores'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+var configintelskylake16384 = {  type: 'line',  data: {labels: ["1","2","4","8","16"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data: [40, 52, 64, 71, 72], fill: false,    }, {      label: 'Intel MKL',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data: [15, 22, 38, 59, 64], }]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: 'FFT (16384x16384) Performance using Arch-R FFT vs Intel MKL Single Precision Complex on an Intel Xeon Scalable Processors Silver 4110 @3GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Number of cores'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+
+var configcavium16384 = {  type: 'line',  data: {labels: ["1","2","4","8","16","32","48","64","96"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data:   [11, 23, 44, 81, 150, 269, 311, 378, 388],fill: false,    }, {      label: 'FFTW',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data:   [9, 18, 32, 55, 82, 128, 160, 200, 205],}]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: 'FFT (16384x16384) Performance using Arch-R FFT vs FFTW Single Precision Complex on a Cavium ThunderX CN8890 @2GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Number of cores'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+
+var configAMDEypc16384 = {  type: 'line',  data: {labels: ["1","2","4","8","16","32"],datasets: [{      label: 'Arch-R',      backgroundColor: window.chartColors.yellow,      borderColor: window.chartColors.yellow,data: [11, 22, 35, 53, 70, 32], fill: false,    }, {      label: 'FFTW',      fill: false,      backgroundColor: window.chartColors.green,      borderColor: window.chartColors.green,data: [6, 7, 10, 20, 36, 25], }]  },  options: {    responsive: true,    maintainAspectRatio: true,    title: {      display: true,text: 'FFT (16384x16384) Performance using Arch-R FFT vs FFTW Single Precision Complex on an AMD Epyc 7281 @2.7GHz'},    tooltips: {      mode: 'index',      intersect: false,    },    hover: {      mode: 'nearest',      intersect: true    },    scales: {      xAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'Number of cores'        },        gridLines: {                                              display: false        }      }],      yAxes: [{        display: true,        scaleLabel: {          display: true,          labelString: 'GFLOPs'        },        gridLines:{ display: false }      }]    }  }};
+var cavium65536 = document.getElementById('canvascavium65536').getContext('2d');
+window.cavium65536 = new Chart(cavium65536, configcavium65536);
+var AMDEypc65536 = document.getElementById('canvasAMDEypc65536').getContext('2d');
+window.AMDEypc65536 = new Chart(AMDEypc65536, configAMDEypc65536);
+var intelskylake65536 = document.getElementById('canvasintelskylake65536').getContext('2d');
+window.intelskylake65536 = new Chart(intelskylake65536, configintelskylake65536);
+var cavium16384 = document.getElementById('canvascavium16384').getContext('2d');
+window.cavium16384 = new Chart(cavium16384, configcavium16384);
+var AMDEypc16384 = document.getElementById('canvasAMDEypc16384').getContext('2d');
+window.AMDEypc16384 = new Chart(AMDEypc16384, configAMDEypc16384);
+var intelskylake16384 = document.getElementById('canvasintelskylake16384').getContext('2d');
+window.intelskylake16384 = new Chart(intelskylake16384, configintelskylake16384);
+</script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-139124337-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+   </body>
+</html>

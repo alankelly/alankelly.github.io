@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" class="no-js">
+   <head>
+      <meta charset="utf-8">
+      <!-- begin SEO -->
+      <title>Accelerating Image Filters - Part 1</title>
+      <meta name="description" content="">
+      <meta property="og:locale" content="en">
+      <meta property="og:site_name" content="Home">
+      <meta property="og:title" content="Accelerating Image Filters - Part 1">
+      <link rel="canonical" href=alankelly.dev/convolutions_part1.html/">
+      <meta property="og:url" content="alankelly.dev/convolutions_part1.html/">
+      <meta property="og:description" content="">
+      <meta property="og:image" content="assets/images/first_photo.jpg">
+      <meta property="og:type" content="article">
+      <meta property="article:published_time" content="2019-04-23T00:00:00+00:00">
+      <script type="application/ld+json">
+         {
+           "@context" : "http://schema.org",
+           "@type" : "Person",
+           "name" : "Alan Kelly",
+           "url" : "//alankelly.dev"
+         }
+      </script>
+      <!-- end SEO -->
+      <!-- http://t.co/dKP3o1e -->
+      <meta name="HandheldFriendly" content="True">
+      <meta name="MobileOptimized" content="320">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script>
+         document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+      </script>
+      <!-- For all browsers -->
+      <link rel="stylesheet" href="assets/css/main.css">
+      <meta http-equiv="cleartype" content="on">
+      <!-- start custom head snippets -->
+      <!-- insert favicons. use http://realfavicongenerator.net/ -->
+      <!-- end custom head snippets -->
+      <!-- Begin Jekyll SEO tag v2.5.0 -->
+      <title>Accelerating Image Filters - Part 1 | Home</title>
+      <meta name="generator" content="Jekyll v3.8.5" />
+      <meta property="og:title" content="Accelerating Image Filters - Part 1" />
+      <meta name="author" content="Alan Kelly" />
+      <meta property="og:locale" content="en_US" />
+      <meta name="description" content="Personal Website and Blog." />
+      <meta property="og:description" content="Personal Website and Blog." />
+      <link rel="canonical" href=//alankelly.dev/first" />
+      <meta property="og:url" content="//alankelly.dev/first/" />
+      <meta property="og:site_name" content="Home" />
+      <meta property="og:type" content="article" />
+      <meta property="article:published_time" content="2019-04-23T00:00:00+00:00" />
+      <meta name="twitter:card" content="summary" />
+      <script type="application/ld+json">
+         {"author":{"@type":"Person","name":"Alan Kelly"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"first"},"url":"first/","headline":"Accelerating Image Filters - Part 1","dateModified":"2019-04-23T00:00:00+00:00","datePublished":"2019-04-23T00:00:00+00:00","description":"Personal Website and Blog.","@context":"http://schema.org"}
+      </script>
+      <!-- End Jekyll SEO tag -->
+   </head>
+   <body class="layout--single">
+      <!--[if lt IE 9]>
+      <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+      <![endif]-->
+      <div class="masthead">
+         <div class="masthead__inner-wrap">
+            <div class="masthead__menu">
+               <nav id="site-nav" class="greedy-nav">
+                  <ul class="visible-links">
+                     <li class="masthead__menu-item masthead__menu-item--lg"><a href="//alankelly.dev/">Home</a></li>
+                     <li class="masthead__menu-item"><a href="blog/">Blog</a></li>
+                     <li class="masthead__menu-item"><a href="talks/">Talks</a></li>
+                     <li class="masthead__menu-item"><a href="cv/">CV</a></li>
+                  </ul>
+                  <ul class="hidden-links hidden"></ul>
+               </nav>
+            </div>
+         </div>
+      </div>
+      <div class="page__hero--overlay"
+         style="background-color: #000; background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/first_photo.jpg');"
+         >
+         <div class="wrapper">
+            <h1 class="page__title" itemprop="headline">
+               Accelerating Image Filters - Part 1
+            </h1>
+            <p class="page__lead"><br /><br /><br /></p>
+         </div>
+      </div>
+      <div id="main" role="main">
+         <div class="sidebar sticky">
+            <div itemscope itemtype="http://schema.org/Person">
+               <div class="author__avatar">
+                  <img src="assets/images/me.png" class="author__avatar" alt="Alan Kelly" itemprop="image">
+               </div>
+               <div class="author__content">
+                  <h3 class="author__name" itemprop="name">Alan Kelly</h3>
+                  <p class="author__bio" itemprop="description">
+                     Software Performance Expert
+                  </p>
+               </div>
+               <div class="author__urls-wrapper">
+                  <button class="btn btn--inverse">Follow</button>
+                  <ul class="author__urls social-icons">
+                     <li>
+                       <script>
+                       var emailAddress = ('me@' + 'alankelly.dev');
+                       document.write('<a href="mailto:' + emailAddress + '">'
+                       + '<i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i>'
+                       + " Email"
+                       + '</a>');
+                       </script>
+                     <li><a href="https://www.linkedin.com/in/alanjkelly" itemprop="sameAs">
+                        <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> 
+                        LinkedIn
+                        </a>
+                     </li>
+                     <li><a href="https://github.com/alankelly" itemprop="sameAs">
+                        <i class="fa fa-fw fa-github" aria-hidden="true"></i> 
+                        Github
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+            <meta itemprop="headline" content="Accelerating Image Filters - Part 1">
+            <meta itemprop="description" content="">
+            <meta itemprop="datePublished" content="April 23, 2019">
+            <div class="page__inner-wrap">
+               <section class="page__content" itemprop="text">
+<p>The Arm Compute Library is used as the base for ArmNN - Arm's open source neural network inference engine. The convolutions in this library are used for neural network inference on mobile - performance is very important!</p>
+<p>The first function we're going to look at is one of the simpler kernels NEBox3x3. This is a simple 3x3 mean filter - each pixel is replaced by the mean of it's neighbours (including itself). Examining the code, we can see that it is already vectorised using neon instructions.</p>
+
+<p>The input to this function is an 8 bit image. All calculations are done in 16 bits to prevent overflow. Finally the sum of the nine elements (8 neighbours and the pixel itself) is cast to 32 bit floating point for the division by 9 to get the average. Because division is so slow, the value of 1/9 is pre-calculated and the result is multiplied by this. From having profiled many neon codes, I know that the cost of conversions from int to float and back again are very expensive on Arm. From the Cortex A75 optimisation guide, we see that converting from a register of 32 bit integers to a register of 32 bit floats has an execution latency of 4 cycles and a throughput of 1/2. More information about instruction latencies and throughputs are available in <a href="optimization_guide.html">this</a> post.</p>
+
+<p>So what can we do about this conversion? Is it possible to eliminate the conversion? Actually it is - using fixed point operations. </p>
+
+<h2>Fixed Point Operations</h2>
+<p>We replace the floating point conversion and multiplication by an integer multiplication and a shift. It is important the use of fixed point operations don't change the result of the calculation. To properly understand fixed point operations I recommend reading <a href="https://www.embeddedrelated.com/showarticle/1015.php">this</a> article. Following the steps in this article, and with a bit of experimenting, I found that multiplying by pow(2,19)/9+1 and dividing by pow(2, 19), an exact result is obtained.</p>
+
+<p>The input image is 8 bits, and all calculations have been done in 16 bits. However, the maximum value is 9 * 255 (9 pixels with a maximum value of 255). This means that it is easy to check all possible values to ensure that no errors are introduced.</p>
+<p>The original code:</p>
+<p>is replaced by:</p>
+<script src="https://gist.github.com/alankelly/6ec69da0c1f17358690ff9ed3e16363f.js"></script>
+<p>The actual calculation is done like this:</p>
+<script src="https://gist.github.com/alankelly/b5cbe3eda8350332193faf04c3ecb9f0.js"></script>
+<h3>Results</h3>
+<p>This small change to the code resulted in an 17.5% reduction in the runtime for an 8 bit image of size 640x480 on a Cortex A75, without impacting the accuracy. Considering that this is already a very high quality implementation of a convolution, getting such a speed-up is significant. This same optimisation may be implemented elsewhere in the Arm Compute library. </p>
+<h3>Next Steps</h3>
+<p>The next step is to open a pull request to add this code to the Arm Compute Library. There's no point optimising this code if nobody is going to use it! The latest generation of Arm processors come with half precision floating point (16 bit) hardware support. Having looked at this code, I can spot a several optimization opportunities. This will be the subject of my next post.</p>
+<p>There is also another optimisation opportunity here - each pixel is loaded from memory and converted from 8 to 16 bits twice. We can eliminate the second load and conversion by rotating registers. I'll write another post soon all about this!</p>
+               </section>
+               <footer class="page__meta">
+                  <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-04-23T00:00:00+00:00">April 23, 2019</time></p>
+               </footer>
+               <section class="page__share">
+                  <h4 class="page__share-title">Share on</h4>
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://alankelly.dev/convolutions_part1.html" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+               </section>
+            </div>
+         </article>
+      </div>
+      <div class="page__footer">
+         <footer>
+            <!-- start custom footer snippets -->
+            <!-- end custom footer snippets -->
+            <div class="page__footer-copyright">
+               &copy; 2019 Alan Kelly.
+               &nbsp;&nbsp;&nbsp;&nbsp;
+                       <script>
+                       var emailAddress = ('me@' + 'alankelly.dev');
+                       document.write('<a href="mailto:' + emailAddress + '">'
+                       + '<i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i>'
+                       + " Email"
+                       + '</a>');
+                       </script>
+               <a href="https://www.linkedin.com/in/alanjkelly" itemprop="sameAs"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i>LinkedIn</a>
+               <a href="https://github.com/alankelly" itemprop="sameAs"><i class="fa fa-fw fa-github" aria-hidden="true"></i>Github</a>
+            </div>
+         </footer>
+      </div>
+<script src="assets/js/main.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         
+         ga('create', 'UA--2', 'auto');
+         ga('send', 'pageview');
+      </script>
+   </body>
+</html>
